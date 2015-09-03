@@ -29,6 +29,7 @@ require('./config/express')(app);
 
 app.use(favicon(__dirname + '/public/images/favicon.ico'));
 
+var url="https://gateway.watsonplatform.net/concept-insights-beta/api";
 var username='72ca0a13-3531-422d-9da5-f10b7567e035';
 var password='PsOCij8nY8bP';
 //var corpus='solutionExplorer';
@@ -36,7 +37,7 @@ var password='PsOCij8nY8bP';
 
 // if bluemix credentials exists, then override local
 var credentials = extend({
-  url: '<url>',
+  url: url,
   username: username,
   password: password,
   version: 'v2'
