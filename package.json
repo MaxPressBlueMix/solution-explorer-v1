@@ -10,16 +10,20 @@
     "url": "https://github.com/watson-developer-cloud/concept-insights-nodejs.git"
   },
   "author": "IBM Corp.",
-  "contributors": [{
-    "name": "James Zhang",
-    "email": "jzhang300@us.ibm.com"
-  }, {
-    "name": "Eva Xiaohui Luo",
-    "email": "evaluo_xhl@us.ibm.com"
-  }, {
-    "name": "German Attanasio Ruiz",
-    "email": "germanatt@us.ibm.com"
-  }],
+  "contributors": [
+    {
+      "name": "James Zhang",
+      "email": "jzhang300@us.ibm.com"
+    },
+    {
+      "name": "Eva Xiaohui Luo",
+      "email": "evaluo_xhl@us.ibm.com"
+    },
+    {
+      "name": "German Attanasio Ruiz",
+      "email": "germanatt@us.ibm.com"
+    }
+  ],
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/watson-developer-cloud/concept-insights-nodejs/issues"
@@ -29,10 +33,10 @@
   },
   "dependencies": {
     "async": "~1.4.0",
-    "body-parser": "~1.13.2",
-    "errorhandler": "~1.4.1",
-    "express": "~4.13.1",
-    "serve-favicon": "~2.2.0",
-    "watson-developer-cloud": "~0.9.26"
+    "body-parser": "~1.13.3",
+    "errorhandler": "~1.4.2",
+    "express": "~4.13.3",
+    "serve-favicon": "~2.2.1",
+    "watson-developer-cloud": "~0.9.30"
   }
 }

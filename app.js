@@ -37,15 +37,15 @@ app.use(favicon(__dirname + '/public/images/favicon.ico'));
 
 // if bluemix credentials exists, then override local
 var credentials = extend({
-  url: "url",
-  username: "username",
-  password: "password",
+  url:"https://gateway.watsonplatform.net/concept-insights/api",
+  username: "3a9e5f17-0b99-4372-b57a-d1259868bc01",
+  password: "WDfknmb6HHF6",
   version: 'v2'
 }, bluemix.getServiceCreds('concept_insights')); // VCAP_SERVICES
 
 console.log(credentials);
 
-var corpus_id = process.env.CORPUS_ID || '/corpora/public/TEDTalks';
+var corpus_id = process.env.CORPUS_ID || '/corpora/genacmenrieve/solutionExplorer';  //'/corpora/public/TEDTalks';
 var graph_id  = process.env.GRAPH_ID ||  '/graphs/wikipedia/en-20120601';
 
 // Create the service wrapper

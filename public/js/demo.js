@@ -370,15 +370,15 @@ function check_duplicate_concept(unique_concept_array, concept) {
 function generate_TED_panel(TED_data, your_input_concepts) {
   var TED_panel = '<div class="_TED-panel">' + '<div class="_TED-panel--TED">';
 
-  var TED_info_above = '<div class="TED--info-above">' + '<a class="TED--title" href="' + TED_data.user_fields.url + '" target="_blank">' + TED_data.user_fields.title + '</a>' + '<div class="TED--author">' + TED_data.user_fields.speaker + '</div>' + '<div class="TED--score">' + '<span class="TED--score-title">' + 'Confidence Score:' + '</span>' + '<span class="TED--score-value">' + Math.floor(TED_data.score * 100) + '</span>' + '</div>' + '</div>';
+  var TED_info_above = '<div class="TED--info-above">' + '<a class="TED--title" href="' + 'TED_data.user_fields.url' + '" target="_blank">' + 'TED_data.user_fields.title' + '</a>' + '<div class="TED--author">' + 'TED_data.user_fields.speaker' + '</div>' + '<div class="TED--score">' + '<span class="TED--score-title">' + 'Confidence Score:' + '</span>' + '<span class="TED--score-value">' + Math.floor(TED_data.score * 100) + '</span>' + '</div>' + '</div>';
 
   TED_panel += TED_info_above;
 
-  var TED_thumbnail = '<div class="TED--img">' + '<img src="' + TED_data.user_fields.thumbnail + '" alt="">' + '</div>';
+  var TED_thumbnail = '<div class="TED--img">' + '<img src="' + 'TED_data.user_fields.thumbnail' + '" alt="">' + '</div>';
 
   TED_panel += TED_thumbnail;
 
-  var TED_info_below = '<div class="TED--info-below">' + '<a class="TED--title" href="' + TED_data.user_fields.url + '" target="_blank">' + TED_data.user_fields.title + '</a>' + '<div class="TED--author">' + TED_data.user_fields.speaker + '</div>' + '<div class="TED--score">' + '<span class="TED--score-title">' + 'Confidence Score:' + '</span>' + '<span class="TED--score-value">' + Math.floor(TED_data.score * 100) + '%' + '</span>' + '</div>' + '</div>';
+  var TED_info_below = '<div class="TED--info-below">' + '<a class="TED--title" href="' + 'TED_data.user_fields.url' + '" target="_blank">' + 'TED_data.user_fields.title' + '</a>' + '<div class="TED--author">' + 'TED_data.user_fields.speaker' + '</div>' + '<div class="TED--score">' + '<span class="TED--score-title">' + 'Confidence Score:' + '</span>' + '<span class="TED--score-value">' + Math.floor(TED_data.score * 100) + '%' + '</span>' + '</div>' + '</div>';
 
   TED_panel += TED_info_below;
 
