@@ -41,7 +41,9 @@ var credentials = extend({
   username: "3a9e5f17-0b99-4372-b57a-d1259868bc01",
   password: "WDfknmb6HHF6",
   version: 'v2'
-}, bluemix.getServiceCreds('concept_insights')); // VCAP_SERVICES
+},
+{});
+//bluemix.getServiceCreds('concept_insights')); // VCAP_SERVICES
 
 console.log(credentials);
 
