@@ -29,29 +29,30 @@ require('./config/express')(app);
 
 app.use(favicon(__dirname + '/public/images/favicon.ico'));
 
-//var url="https://gateway.watsonplatform.net/concept-insights-beta/api";
-//var username='72ca0a13-3531-422d-9da5-f10b7567e035';
-//var password='PsOCij8nY8bP';
-//var corpus='solutionExplorer';
-
-
 // if bluemix credentials exists, then override local
 var credentials = extend({
   url:"https://gateway.watsonplatform.net/concept-insights/api",
-  username: "3a9e5f17-0b99-4372-b57a-d1259868bc01",
-  password: "WDfknmb6HHF6",
+  username: "f7f5fa94-8a06-4376-a082-c83d69b9d344",
+  password: "rEigWBfxVzyu",
   version: 'v2'
 },
-{});
-//bluemix.getServiceCreds('concept_insights')); // VCAP_SERVICES
-
+bluemix.getServiceCreds('concept_insights')); // VCAP_SERVICES
 console.log(credentials);
-
-var corpus_id = process.env.CORPUS_ID || '/corpora/genacmenrieve/solutionExplorer';  //'/corpora/public/TEDTalks';
-var graph_id  = process.env.GRAPH_ID ||  '/graphs/wikipedia/en-20120601';
 
 // Create the service wrapper
 var conceptInsights = watson.concept_insights(credentials);
+console.log(conceptInsights.accounts);
+
+var corpus_id="";
+var graph_id  = process.env.GRAPH_ID ||  '/graphs/wikipedia/en-20120601';
+
+var accountID=conceptInsights.accounts.getAccountsInfo({},
+		function(error,body,response)
+			{
+			accountID=body.accounts[0].account_id;
+			console.log(accountID);
+			corpus_id = process.env.CORPUS_ID || '/corpora/'+accountID+'/solutionExplorer';  //'/corpora/public/TEDTalks';
+			});
 
 app.get('/api/labelSearch', function(req, res, next) {
   var params = extend({
