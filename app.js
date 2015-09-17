@@ -30,13 +30,12 @@ require('./config/express')(app);
 app.use(favicon(__dirname + '/public/images/favicon.ico'));
 
 // if bluemix credentials exists, then override local
-var credentials = extend({
-  url:"https://gateway.watsonplatform.net/concept-insights/api",
-  username: "f7f5fa94-8a06-4376-a082-c83d69b9d344",
-  password: "rEigWBfxVzyu",
-  version: 'v2'
-},
-bluemix.getServiceCreds('concept_insights')); // VCAP_SERVICES
+// To run this locally, you have to create an environment
+// variable called VCAP_SERVICES that contains the JSON
+// object that has the service credentials in it.
+var credentials = extend(
+	{version: 'v2'},
+	bluemix.getServiceCreds('concept_insights')); // VCAP_SERVICES
 console.log(credentials);
 
 // Create the service wrapper
@@ -53,6 +52,22 @@ var accountID=conceptInsights.accounts.getAccountsInfo({},
 			console.log(accountID);
 			corpus_id = process.env.CORPUS_ID || '/corpora/'+accountID+'/solutionExplorer';  //'/corpora/public/TEDTalks';
 			});
+
+app.get('/api/idSearch', function(req, res, next) {
+  var params = extend({
+    corpus: corpus_id,
+    prefix: true,
+    limit: 10,
+    concepts: true
+  }, req.id);
+
+  conceptInsights.corpora.getDocument(params, function(err, results) {
+    if (err)
+      return next(err);
+    else
+      res.json(results);
+  });
+});
 
 app.get('/api/labelSearch', function(req, res, next) {
   var params = extend({
@@ -111,12 +126,28 @@ var getPassagesAsync = function(doc) {
       else {
         doc = extend(doc, fullDoc);
         doc.explanation_tags.forEach(crop.bind(this, doc));
+        doc.url=getURL(doc); //091615dep
         delete doc.parts;
         callback(null, doc);
       }
     });
   };
 };
+
+//091615dep
+function getURL(doc)
+	{
+	var url=null;
+	for (var obj in doc.parts)
+		{
+		if (doc.parts[obj].name=="url")
+			{
+			url=doc.parts[obj].data;
+			break;
+			}
+		}
+	return url;
+	}
 
 /**
  * Crop the document text where the tag is.
