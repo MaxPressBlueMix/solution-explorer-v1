@@ -53,22 +53,6 @@ var accountID=conceptInsights.accounts.getAccountsInfo({},
 			corpus_id = process.env.CORPUS_ID || '/corpora/'+accountID+'/solutionExplorer';  //'/corpora/public/TEDTalks';
 			});
 
-app.get('/api/idSearch', function(req, res, next) {
-  var params = extend({
-    corpus: corpus_id,
-    prefix: true,
-    limit: 10,
-    concepts: true
-  }, req.id);
-
-  conceptInsights.corpora.getDocument(params, function(err, results) {
-    if (err)
-      return next(err);
-    else
-      res.json(results);
-  });
-});
-
 app.get('/api/labelSearch', function(req, res, next) {
   var params = extend({
     corpus: corpus_id,
