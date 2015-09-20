@@ -48,9 +48,18 @@ var graph_id  = process.env.GRAPH_ID ||  '/graphs/wikipedia/en-20120601';
 var accountID=conceptInsights.accounts.getAccountsInfo({},
 		function(error,body,response)
 			{
-			accountID=body.accounts[0].account_id;
-			console.log(accountID);
-			corpus_id = process.env.CORPUS_ID || '/corpora/'+accountID+'/solutionExplorer';  //'/corpora/public/TEDTalks';
+			if (error)
+				{
+				console.log(error);
+				console.log("Terminating.");
+				process.exit(-1);
+				}
+			else
+				{
+				accountID=body.accounts[0].account_id;
+				console.log(accountID);
+				corpus_id = process.env.CORPUS_ID || '/corpora/'+accountID+'/solutionExplorer';  //'/corpora/public/TEDTalks';
+				}
 			});
 
 app.get('/api/labelSearch', function(req, res, next) {
@@ -65,7 +74,10 @@ app.get('/api/labelSearch', function(req, res, next) {
     if (err)
       return next(err);
     else
+      {
+      console.log(results);
       res.json(results);
+      }
   });
 });
 

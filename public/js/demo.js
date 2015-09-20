@@ -35,7 +35,7 @@ console.log("Ready!");
   };
   var conceptSuggestion = function(d) {
     if (getType(d.id) === 'concept') {
-    	console.log("Found a concept");debugger;
+    	console.log("Found a concept");
       return '<div><strong>' + d.label + '</strong> <i class=\'pull-right\'>' +
         getType(d.id) + '</i><br><i class="concept-abstract">' + trunc(d.abstract) + '</i></div>';
     } else {
@@ -127,7 +127,7 @@ console.log("Ready!");
 
       var filtered = {};
       filtered['matches'] = results.matches.filter(function(elem) {
-        return elem.id.match(/^\/graphs/);
+        return elem.id; //092015dep elem.id.match(/^\/graphs/);
       });
       callback(filtered);
     }).fail(function(error) {
